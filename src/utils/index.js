@@ -8,14 +8,14 @@ class Movie {
     //In a method/class async goes before function
     //Passed collection as props from app.js
     async add(collection) {
+        //Below - adds this (one item) to database and returns success message if successful
         await collection.insertOne(this);
         return `Successfully added the movie - ${this.title} with actor ${this.actor}`;
-        //Above - adds this (one item) to database and returns success message if successful
     }
 
     async list(collection) {
+        //Below - Lists all movies in db. finds them and returns them as an array
         return await collection.find().toArray();
-        //Above - Lists all movies in db. finds them and returns them as an array
     }
 
     async update(collection) {
@@ -41,6 +41,20 @@ class Movie {
         return (
             console.log(`Deleted ${result.deletedCount} movie(s) - ${filter.title}`));
     }
+    async search(collection) {
+        //Below - Finds specific title of movie and returns object as an array
+        return await collection.find(
+            { title: `${this.title}` }
+        ).toArray();
+        //Below - query for specific title of movie
+        // const query = { title: `${this.title }` };
+        //Below - options show all value fields except the _id
+        // const options = {
+        //     projection: { _id: 0, title: 1, actor: 1, rating: 1, review: 1 },
+        // };
+
+    }
 }
+
 
 module.exports = Movie;
