@@ -29,6 +29,11 @@ const app = async (yargsObj) => {
             console.log(await movie.delete(collection));
             //Above - deletes specified movie details title, actor, review or rating
 
+        } else if (yargsObj.search) {
+            const movie = new Movie(yargsObj.title, yargsObj.actor, yargsObj.review, yargsObj.rating);
+            console.log(await movie.search(collection));
+            //Above - searches for movie matching a specified title
+
         } else {
             console.log("Incorrect command")
         }
