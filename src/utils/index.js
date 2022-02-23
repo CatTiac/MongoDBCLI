@@ -7,7 +7,7 @@ class Movie {
     }
     //In a method/class async goes before function
     //Passed collection as props from app.js
-    async add (collection) {
+    async add(collection) {
         await collection.insertOne(this);
         return `Successfully added the movie - ${this.title} with actor ${this.actor}`;
         //Above - adds this (one item) to database and returns success message if successful
@@ -19,27 +19,27 @@ class Movie {
     }
 
     async update(collection) {
-        // Below - filter to update all movies with title "Spiderman"
-            const filter = { title: `${this.title}` };
-            //Below - Updates matching doc (with title specified in terminal) with a randomly generated % rating and review
-            //$set - Sets the value of a field in a document
-            const updateDoc = {
-                $set: {
-                    rating: `This film has a rating of ${Math.floor(Math.random() * 100)}%`,
-                    review: `${this.review}`,
-                },
-            };
-            const result = await collection.updateMany(filter, updateDoc);
-            console.log(`Updated ${result.modifiedCount} movie(s) - ${filter.title}`);
-        // return await collection.updateMany();
+        // Below - filter to update all movies with title specifiedin terminal
+        const filter = { title: `${this.title}` };
+        //Below - Updates matching doc (with title specified in terminal) with a randomly generated % rating and review
+        //$set - Sets the value of a field in a document
+        const updateDoc = {
+            $set: {
+                rating: `This film has a rating of ${Math.floor(Math.random() * 100)}%`,
+                review: `${this.review}`,
+            },
+        };
+        const result = await collection.updateMany(filter, updateDoc);
+        return (
+            console.log(`Updated ${result.modifiedCount} movie(s) - ${filter.title}`));
     }
 
     async delete(collection) {
-        //Below - deletes item based on title "Matilda"
-            const filter = { title: `${this.title}` };
-            const result = await collection.deleteMany(filter);
-            console.log(`Deleted ${result.deletedCount} movie(s) - ${filter.title}`);
-        // return await collection.deleteMany();
+        //Below - deletes item based on title specified in terminal
+        const filter = { title: `${this.title}` };
+        const result = await collection.deleteMany(filter);
+        return (
+            console.log(`Deleted ${result.deletedCount} movie(s) - ${filter.title}`));
     }
 }
 

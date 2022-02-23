@@ -21,16 +21,13 @@ const app = async (yargsObj) => {
         } else if (yargsObj.update) {
             const movie = new Movie(yargsObj.title, yargsObj.actor, yargsObj.review, yargsObj.rating);
             console.log(await movie.update(collection));
-            
+            //Above - updates specified movie details title, actor, review or rating
+
 
         } else if (yargsObj.delete) {
             const movie = new Movie(yargsObj.title, yargsObj.actor, yargsObj.review, yargsObj.rating);
             console.log(await movie.delete(collection));
-            //Below - deletes item based on title "Matilda"
-            // const filter = { title: "Matilda" };
-            // const result = await collection.deleteMany(filter);
-            // console.log("Deleted " + result.deletedCount + " movie(s) - " + filter.title);
-
+            //Above - deletes specified movie details title, actor, review or rating
 
         } else {
             console.log("Incorrect command")
